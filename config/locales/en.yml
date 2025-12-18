@@ -1,5 +1,4 @@
-ja:
+en:
   lockout_threshold: Lockout threshold
   custom_field_id: Custom field ID
-  lockout_notify_mail_subject: Your account locked
   lockout_notify_mail_body: Your account has been locked due to the specified number of authentication errors.

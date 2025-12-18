@@ -1,5 +1,4 @@
 ja:
   lockout_threshold: 連続認証失敗しきい値
   custom_field_id: 認証失敗回数保存ユーザカスタムフィールドID
-  lockout_notify_mail_subject: ユーザアカウントロック通知
   lockout_notify_mail_body: 認証エラーが指定回数に達したためユーザアカウントをロックしました

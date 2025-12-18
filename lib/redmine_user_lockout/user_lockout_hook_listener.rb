@@ -54,15 +54,15 @@ module RedmineUserLockout
 							user.lock
 							user.save
 
-							::Mailer.security_notification(
+							# ::Mailer.security_notification(
+							::Mailer.deliver_security_notification(
 								user,
-								User.current,
+								user,
 								{
-									title: :lockout_notify_mail_subject,
-									message: 'lockout_notify_mail_body',
-									url: {controller: 'my', action: 'account'}
+									message: :lockout_notify_mail_body,
+									remote_ip: context[:request].remote_ip
 								}
-							).deliver
+							)
 						else
 							Rails.logger.debug "Not lockout '#{context[:params][:username]}' / '#{user.id}' / '#{cv.value} <= #{Setting.plugin_redmine_user_lockout['lockout_threshold']}'"
 						end
