@@ -44,9 +44,13 @@ module RedmineUserLockout
 							cv.save
 						else
 							cv = cvs[0]
-							cv.value = cv.value.to_i + 1
-							Rails.logger.debug "Increment CustomValue '#{context[:params][:username]}' / '#{user.id}' / #{cv.value}"
-							cv.save
+							if cv.value.to_i >= 0
+								cv.value = cv.value.to_i + 1
+								Rails.logger.debug "Increment CustomValue '#{context[:params][:username]}' / '#{user.id}' / #{cv.value}"
+								cv.save
+							else
+								Rails.logger.debug "No lockout user '#{context[:params][:username]}' / '#{user.id}' / #{cv.value}"
+							end
 						end
 
 						if cv.value.to_i > Setting.plugin_redmine_user_lockout['lockout_threshold'].to_i
