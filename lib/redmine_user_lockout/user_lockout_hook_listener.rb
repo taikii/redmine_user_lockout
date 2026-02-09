@@ -53,7 +53,7 @@ module RedmineUserLockout
 							end
 						end
 
-						if cv.value.to_i > Setting.plugin_redmine_user_lockout['lockout_threshold'].to_i
+						if cv.value.to_i >= Setting.plugin_redmine_user_lockout['lockout_threshold'].to_i
 							Rails.logger.info "Lockout user '#{context[:params][:username]}' / '#{user.id}' / '#{cv.value} > #{Setting.plugin_redmine_user_lockout['lockout_threshold']}'"
 							user.lock
 							user.save
